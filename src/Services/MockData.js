@@ -1,3 +1,5 @@
+
+
 export const SECTIONS_DATA = [
     {
         title: 'hats',
