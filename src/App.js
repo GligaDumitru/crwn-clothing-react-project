@@ -4,6 +4,7 @@ import HomePage from './pages/homepage/homepage.component';
 import './App.css';
 import ShopPage from './pages/shop/shop.component';
 import './styles/index.scss';
+import Header from './components/header/header.component';
 
 const NotFoundPage = () => (
   <div>
@@ -11,9 +12,11 @@ const NotFoundPage = () => (
   </div>
 )
 
+
 function App() {
   return (
     <div className="App">
+      <Header />
       <Switch>
         <Route exact path='/' component={HomePage} />
         <Route path='/shop' component={ShopPage} />
