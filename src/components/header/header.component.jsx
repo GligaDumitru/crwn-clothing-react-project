@@ -14,6 +14,9 @@ export default function Header() {
         <Link className='option' to='/contact'>
           Contact
         </Link>
+        <Link className='option' to='/account'>
+          Account
+        </Link>
       </div>
     </div>
   );

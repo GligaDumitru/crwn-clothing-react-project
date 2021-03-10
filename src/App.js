@@ -5,6 +5,7 @@ import './App.css';
 import ShopPage from './pages/shop/shop.component';
 import './styles/index.scss';
 import Header from './components/header/header.component';
+import Session from './pages/session/session.component';
 
 const NotFoundPage = () => (
   <div>
@@ -19,7 +20,8 @@ function App() {
       <Header />
       <Switch>
         <Route exact path='/' component={HomePage} />
-        <Route path='/shop' component={ShopPage} />
+        <Route exact path='/shop' component={ShopPage} />
+        <Route path='/account' component={Session} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>

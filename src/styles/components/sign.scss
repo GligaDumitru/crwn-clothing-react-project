@@ -1,0 +1,17 @@
+.session {
+    width: 100%;
+    .sign-options {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .sign-in {
+        width: 30vw;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .title {
+        margin: 10px 0;
+    }
+}
