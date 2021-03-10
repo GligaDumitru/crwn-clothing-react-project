@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import MenuItem from './../menu-iem/menu-item.component';
-import './directory.styles.scss'
-import { sections } from './directory.data';
+import { SECTIONS_DATA } from './../../Services/MockData';
+
 export default class Directory extends Component {
 
     render() {
         return (
             <div className="directory-menu">
                 {
-                    sections.map(({ title, imageUrl, id, linkUrl, size }) =>
+                    SECTIONS_DATA.map(({ title, imageUrl, id, linkUrl, size }) =>
                         <MenuItem
                             key={id}
                             linkUrl={linkUrl}
