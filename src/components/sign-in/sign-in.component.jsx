@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import FormInput from './../form-input/form-input.component';
 import CustomButton from './../custom-button/custom-button.component';
 
-import { signInWithGoogle } from './../../firebase/firebase.utils';
-export default class SignIn extends Component {
+import { auth, signInWithGoogle } from './../../firebase/firebase.utils';
+import { withRouter } from 'react-router-dom';
+class SignIn extends Component {
   constructor(props) {
     super(props);
 
@@ -12,12 +13,24 @@ export default class SignIn extends Component {
       password: 'password1',
     };
   }
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault();
-    this.setState({
-      email: '',
-      password: '',
-    });
+
+    const { email, password } = this.state;
+
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+      this.setState({
+        email: '',
+        password: '',
+      });
+      this.props.history.push('/');
+    } catch (error) {
+      console.log(error);
+      if (error.message) {
+        alert(error.message);
+      }
+    }
   };
 
   handleChange = ({ target }) => {
@@ -57,3 +70,4 @@ export default class SignIn extends Component {
     );
   }
 }
+export default withRouter(SignIn);

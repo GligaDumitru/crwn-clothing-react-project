@@ -1,5 +1,6 @@
 import React from 'react';
 import SignIn from './../../components/sign-in/sign-in.component';
+import SignUp from './../../components/sign-up/sign-up.component';
 
 export default function Session() {
   return (
@@ -7,7 +8,7 @@ export default function Session() {
       <h1>Login/Signup</h1>
       <div className='sign-options'>
         <SignIn />
-        <SignIn />
+        <SignUp />
       </div>
     </div>
   );

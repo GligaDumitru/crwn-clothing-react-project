@@ -6,7 +6,7 @@ import ShopPage from './pages/shop/shop.component';
 import './styles/index.scss';
 import Header from './components/header/header.component';
 import Session from './pages/session/session.component';
-import { auth } from './firebase/firebase.utils'
+import { auth, createUserProfileDocument } from './firebase/firebase.utils'
 const NotFoundPage = () => (
   <div>
     <h1>Page Not Found - 404</h1>
@@ -25,11 +25,25 @@ class App extends Component {
   unsubscribleFromAuth = null;
 
   componentDidMount() {
-    this.unsubscribleFromAuth = auth.onAuthStateChanged(user => {
-      this.setState({
-        currentUser: user
-      })
-      console.log(user);
+    this.unsubscribleFromAuth = auth.onAuthStateChanged(async userAuth => {
+
+
+      if (!!userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+
+        userRef.onSnapshot(snapShot => {
+          this.setState({
+            currentUser: {
+              id: snapShot.id,
+              ...snapShot.data()
+            }
+          })
+        })
+      } else {
+        this.setState({
+          currentUser: userAuth
+        })
+      }
     })
   }
 
