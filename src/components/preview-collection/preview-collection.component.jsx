@@ -8,8 +8,8 @@ export default function PreviewCollection({ title = 'Title', items = [] }) {
       <div className='preview'>
         {items
           .filter((item, index) => index < 4)
-          .map(({ id, ...othersCollectionProps }, index) => (
-            <CollectionItem key={id} {...othersCollectionProps} />
+          .map((item, index) => (
+            <CollectionItem key={item.id} item={item} />
           ))}
       </div>
     </div>

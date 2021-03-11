@@ -33,7 +33,7 @@ const Header = ({ cart, currentUser, setToggleField }) => {
           </Link>
         )}
 
-        <CartIcon onClick={() => setToggleField('hidden')} />
+        <CartIcon />
       </div>
       <Cart />
     </div>
