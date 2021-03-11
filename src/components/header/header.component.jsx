@@ -6,8 +6,10 @@ import { connect } from 'react-redux';
 import CartIcon from './../cart-icon/cart-icon.component';
 import Cart from './../cart-dropdown/cart-dropdown.component';
 import { setToggleField } from './../../redux/cart/cart.actions';
-
-const Header = ({ cart, currentUser, setToggleField }) => {
+import { createStructuredSelector } from 'reselect';
+import { selectCurrentUser } from './../../redux/user/user.selectors';
+import { selectCartHidden } from './../../redux/cart/cart-selectors';
+const Header = ({ currentUser, setToggleField }) => {
   return (
     <div className='header'>
       <Link className='logo-container' to='/'>
@@ -40,9 +42,9 @@ const Header = ({ cart, currentUser, setToggleField }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  cart: state.cart,
-  currentUser: state.user.currentUser,
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+  hidden: selectCartHidden,
 });
 
 const mapDispatchToProps = (dispatch) => ({
