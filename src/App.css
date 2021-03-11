@@ -19,14 +19,13 @@ a:hover {
 }
 
 *::-webkit-scrollbar {
-    width: 5px;
+    width: 3px;
 }
 
 *::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 0 6px rgba(43, 34, 34, 0.3);
 }
 
 *::-webkit-scrollbar-thumb {
-    background-color: transparent;
-    outline: 0px solid slategrey;
+    background-color: rgb(110, 28, 28);
 }

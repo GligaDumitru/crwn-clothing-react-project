@@ -1,13 +1,17 @@
 import React from 'react';
 import CustomButton from '../custom-button/custom-button.component';
 import { connect } from 'react-redux';
+import CartItem from './../cart-item/cart-item.component';
 
 function Cart({ cart }) {
   return (
-    <div className={`${cart && cart.hidden && 'hide'} cart-dropdown`}>
+    <div className={`${cart.hidden && 'hide'} cart-dropdown`}>
       <div className='cart-items'>
-        <CustomButton>GO TO CHECKOUT</CustomButton>
+        {cart.cartItems.map((cI) => (
+          <CartItem key={cI.id} item={cI} />
+        ))}
       </div>
+      <CustomButton>GO TO CHECKOUT</CustomButton>
     </div>
   );
 }

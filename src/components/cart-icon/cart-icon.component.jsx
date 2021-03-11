@@ -6,7 +6,7 @@ import { setToggleField } from './../../redux/cart/cart.actions';
 function CartIcon(props) {
   const { cartItems = [] } = props.cart;
   return (
-    <div className='cart-icon' onClick={() => setToggleField('hidden')}>
+    <div className='cart-icon' onClick={() => props.setToggleField('hidden')}>
       <ShoppingBag className='shopping-icon' />
       <span className='item-count'>{cartItems.length}</span>
     </div>
