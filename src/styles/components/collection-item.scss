@@ -1,5 +1,5 @@
 .collection-item {
-    width: 22%;
+    min-width: 22%;
     display: flex;
     flex-direction: column;
     height: 350px;
@@ -45,6 +45,26 @@
         .custom-button {
             opacity: 1;
             display: block;
+        }
+    }
+}
+
+.collection-page {
+    display: flex;
+    flex-direction: column;
+
+    .title {
+        font-size: 38px;
+        margin: 0 auto 30px;
+    }
+
+    .items {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-gap: 10px;
+
+        & .collection-item {
+            margin-bottom: 30px;
         }
     }
 }
