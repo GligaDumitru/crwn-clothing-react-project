@@ -9,6 +9,7 @@ import CheckoutPage from './pages/checkout/checkout.component';
 import HomePage from './pages/homepage/homepage.component';
 import Session from './pages/session/session.component';
 import ShopPage from './pages/shop/shop.component';
+import { selectShopCollectionsForPreview } from './redux/shop/shop-selectors';
 import { setCurrentUser } from './redux/user/user.actions';
 import { selectCurrentUser } from './redux/user/user.selectors';
 
@@ -70,6 +71,7 @@ class App extends Component {
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
+  collectionsArray: selectShopCollectionsForPreview,
 });
 
 const mapDispatchToProps = (dispatch) => ({
