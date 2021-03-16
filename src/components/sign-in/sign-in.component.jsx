@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import FormInput from './../form-input/form-input.component';
-import CustomButton from './../custom-button/custom-button.component';
+import { withRouter } from 'react-router-dom';
 
 import { auth, signInWithGoogle } from './../../firebase/firebase.utils';
-import { withRouter } from 'react-router-dom';
+import CustomButton from './../custom-button/custom-button.component';
+import FormInput from './../form-input/form-input.component';
+
 class SignIn extends Component {
   constructor(props) {
     super(props);
@@ -61,10 +62,12 @@ class SignIn extends Component {
             required
             label='Password'
           />
-          <CustomButton>SIGN IN</CustomButton>
-          <CustomButton isGoogleSignIn={true} onClick={signInWithGoogle}>
-            SIGN IN With Google
-          </CustomButton>
+          <div style={{ display: 'flex' }}>
+            <CustomButton>SIGN IN</CustomButton>
+            <CustomButton isGoogleSignIn={true} onClick={signInWithGoogle}>
+              SIGN IN With Google
+            </CustomButton>
+          </div>
         </form>
       </div>
     );

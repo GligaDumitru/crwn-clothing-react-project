@@ -1,54 +1,42 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 import { auth } from '../../firebase/firebase.utils';
-import { connect } from 'react-redux';
-import CartIcon from './../cart-icon/cart-icon.component';
-import Cart from './../cart-dropdown/cart-dropdown.component';
-import { setToggleField } from './../../redux/cart/cart.actions';
-import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from './../../redux/user/user.selectors';
-import { selectCartHidden } from './../../redux/cart/cart-selectors';
-const Header = ({ currentUser, setToggleField }) => {
+import Cart from './../cart-dropdown/cart-dropdown.component';
+import CartIcon from './../cart-icon/cart-icon.component';
+import { HeaderContainer, LogoContainer, OptionLink, Options } from './header.styles';
+
+const Header = ({ currentUser }) => {
   return (
-    <div className='header'>
-      <Link className='logo-container' to='/'>
+    <HeaderContainer>
+      <LogoContainer to='/'>
         <Logo className='logo' />
-      </Link>
-      <div className='options'>
-        <Link className='option' to='/shop'>
-          SHOP
-        </Link>
-        <Link className='option' to='/contact'>
-          Contact
-        </Link>
+      </LogoContainer>
+      <Options>
+        <OptionLink to='/shop'>SHOP</OptionLink>
+        <OptionLink to='/contact'>Contact</OptionLink>
         {currentUser ? (
           <>
             <div>{`Hi, ${currentUser.displayName}`}</div>
-            <div className='option logout-btn' onClick={() => auth.signOut()}>
+            <OptionLink as='div' onClick={() => auth.signOut()}>
               Logout
-            </div>
+            </OptionLink>
           </>
         ) : (
-          <Link className='option' to='/account'>
-            Account
-          </Link>
+          <OptionLink to='/account'>Account</OptionLink>
         )}
-
         <CartIcon />
-      </div>
+      </Options>
       <Cart />
-    </div>
+    </HeaderContainer>
   );
 };
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
-  hidden: selectCartHidden,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  setToggleField: (payload) => dispatch(setToggleField(payload)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, null)(Header);
