@@ -3,6 +3,7 @@ import {
   ADD_ITEM,
   CLEAR_ITEM_FROM_CART,
   DECREASE_CART_ITEM_QUANTITY,
+  CLEAR_CART,
 } from '../types';
 
 export const setToggleField = (payload) => ({
@@ -23,4 +24,8 @@ export const decreaseCartItemQuantity = (payload) => ({
 export const clearItemFromCart = (payload) => ({
   type: CLEAR_ITEM_FROM_CART,
   payload,
+});
+
+export const clearCart = () => ({
+  type: CLEAR_CART,
 });
