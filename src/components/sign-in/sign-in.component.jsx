@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { googleSignInStart } from '../../redux/user/user.actions';
 
-import { auth, signInWithGoogle } from './../../firebase/firebase.utils';
+import { auth } from './../../firebase/firebase.utils';
 import CustomButton from './../custom-button/custom-button.component';
 import FormInput from './../form-input/form-input.component';
+import { connect } from 'react-redux';
 
 class SignIn extends Component {
   constructor(props) {
@@ -41,6 +42,7 @@ class SignIn extends Component {
   };
   render() {
     const { email, password } = this.state;
+    const { googleSignInStart } = this.props;
     return (
       <div className='sign-in'>
         <h2>I already have an account</h2>
@@ -63,9 +65,13 @@ class SignIn extends Component {
             label='Password'
           />
           <div style={{ display: 'flex' }}>
-            <CustomButton>SIGN IN</CustomButton>
-            <CustomButton isGoogleSignIn={true} onClick={signInWithGoogle}>
-              SIGN IN With Google
+            <CustomButton type='submit'>SIGN IN</CustomButton>
+            <CustomButton
+              type='button'
+              isGoogleSignIn
+              onClick={googleSignInStart}
+            >
+              Google
             </CustomButton>
           </div>
         </form>
@@ -73,4 +79,9 @@ class SignIn extends Component {
     );
   }
 }
-export default withRouter(SignIn);
+
+const mapDispatchToProps = (dispatch) => ({
+  googleSignInStart: () => dispatch(googleSignInStart()),
+});
+
+export default connect(null, mapDispatchToProps)(SignIn);
